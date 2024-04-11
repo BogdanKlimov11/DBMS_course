@@ -1,4 +1,3 @@
--- Создание таблицы
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
     FirstName NVARCHAR(50),
@@ -7,7 +6,6 @@ CREATE TABLE Employees (
     Salary DECIMAL(10, 2)
 );
 
--- Вставка данных
 INSERT INTO Employees (EmployeeID, FirstName, LastName, Position, Salary)
 VALUES 
     (1, N'John', N'Doe', N'Manager', 50000.00),
