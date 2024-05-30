@@ -1,0 +1,2 @@
+ALTER TABLE Employees
+DROP COLUMN Email;
