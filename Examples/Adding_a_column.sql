@@ -1,0 +1,2 @@
+ALTER TABLE Employees
+ADD Email NVARCHAR(100);
