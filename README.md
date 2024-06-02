@@ -1136,6 +1136,48 @@ SELECT CURRENT_TIMESTAMP;
 <!-- Создание БД -->
 <h4 id="раздел-17">Создание БД <a href="#top">↑top↑</a></h4>
 
+Для создания БД используется инструкция `CREATE DATABASE`.
+
+```sql
+CREATE DATABASE dbName;
+-- или
+CREATE DATABASE IF NOT EXISTS dbName;
+```
+
+Условие `IF NOT EXISTS` позволяет избежать получения ошибки при попытке создания БД, 
+которая уже существует.
+
+Название БД должно быть уникальным в пределах СУБД.
+
+Создаем БД `testDB`:
+
+```sql
+CREATE DATABASE testDB;
+```
+
+Получаем список БД:
+
+```sql
+SHOW DATABASES;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>Database</th>
+    </tr>
+    <tr>
+        <td>information_schema</td>
+    </tr>
+    <tr>
+        <td>postgres</td>
+    </tr>
+    <tr>
+        <td>testDB</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Удаление БД -->
