@@ -1248,6 +1248,95 @@ USE testDB;
 <!-- Создание таблицы -->
 <h4 id="раздел-20">Создание таблицы <a href="#top">↑top↑</a></h4>
 
+Создание таблицы предполагает указание названия таблицы и определение колонок таблицы и их 
+типов данных. Для создания таблицы используется инструкция `CREATE TABLE`.
+
+```sql
+CREATE TABLE tableName (
+  col1 datatype,
+  col2 datatype,
+  ...
+  colN datatype,
+  PRIMARY KEY (хотя бы одна колонка)
+);
+```
+
+Для создания таблицы путем копирования другой таблицы используется сочетание `CREATE TABLE` и 
+`SELECT`.
+
+Пример создания таблицы `users`, где первичным ключом являются идентификаторы пользователей, 
+а поля для имени и возраста пользователя не могут быть нулевыми:
+
+```sql
+CREATE TABLE users (
+  userId INT,
+  userName VARCHAR(20)  NOT NULL,
+  age INT           NOT NULL,
+  city VARCHAR(20),
+  status VARCHAR(8),
+  PRIMARY KEY (id)
+);
+```
+
+Проверяем, что таблица была создана:
+
+```sql
+DESC users;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Null</th>
+        <th>Key</th>
+        <th>Default</th>
+        <th>Extra</th>
+    </tr>
+    <tr>
+        <td>userId</td>
+        <td>int(11)</td>
+        <td>NO</td>
+        <td>PRI</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>userName</td>
+        <td>varchar(20)</td>
+        <td>NO</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>age</td>
+        <td>int(11)</td>
+        <td>NO</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>city</td>
+        <td>varchar(20)</td>
+        <td>NO</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td>varchar(8)</td>
+        <td>YES</td>
+        <td></td>
+        <td>NULL</td>
+        <td></td>
+    </tr>
+</table>
+
 ---
 
 <!-- Удаление таблицы -->
