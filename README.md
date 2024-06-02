@@ -1452,6 +1452,15 @@ VALUES (4, 'Oleg', 28, 'Moscow', 'inactive');
     </tr>
 </table>
 
+**Заполнение таблицы с помощью другой таблицы**
+
+```sql
+INSERT INTO tableName [(col1, col2, ...colN)]
+  SELECT col1, col2, ...colN
+  FROM anotherTable
+  [WHERE condition];
+```
+
 ---
 
 <!-- Выборка полей -->
