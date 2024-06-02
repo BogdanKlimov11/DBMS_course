@@ -1412,6 +1412,46 @@ INSERT INTO users
 VALUES (4, 'Oleg', 28, 'Moscow', 'inactive');
 ```
 
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>city</th>
+        <th>status</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>25</td>
+        <td>Moscow</td>
+        <td>active</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>Ekaterinburg</td>
+        <td>inactive</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+        <td>Ekaterinburg</td>
+        <td>active</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Oleg</td>
+        <td>28</td>
+        <td>Moscow</td>
+        <td>inactive</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Выборка полей -->
