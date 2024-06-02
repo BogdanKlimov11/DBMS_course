@@ -1366,6 +1366,52 @@ DESC users;
 <!-- Добавление колонок -->
 <h4 id="раздел-22">Добавление колонок <a href="#top">↑top↑</a></h4>
 
+Для добавления в таблицу колонок используется инструкция `INSERT INTO`.
+
+```sql
+INSERT INTO tableName (col1, col2, ...colN)
+VALUES (val1, val2, ...valN);
+```
+
+Названия колонок можно не указывать, однако, в этом случае значения должны перечисляться в 
+правильном порядке.
+
+```sql
+INSERT INTO tableName VALUES (val1, val2, ...valN);
+```
+
+Во избежание ошибок, рекомендуется всегда перечислять названия колонок.
+
+Предположим, что мы не удаляли таблицу `users`. Заполним ее пользователями:
+
+```sql
+INSERT INTO users (userId, userName, age, city, status)
+VALUES (1, 'Igor', 25, 'Moscow', 'active');
+
+INSERT INTO users (userId, userName, age, city, status)
+VALUES (2, 'Vika', 26, 'Ekaterinburg', 'inactive');
+
+INSERT INTO users (userId, userName, age, city, status)
+VALUES (3, 'Elena', 27, 'Ekaterinburg', 'active');
+```
+
+В таблицу можно добавлять несколько строк за один раз.
+
+```sql
+INSERT INTO users (userId, userName, age, city, status)
+VALUES
+(1, 'Igor', 25, 'Moscow', 'active'),
+(2, 'Vika', 26, 'Ekaterinburg', 'inactive'),
+(3, 'Elena', 27, 'Ekaterinburg', 'active');
+```
+
+Также, как было отмечено, при добавлении строки названия полей можно опускать:
+
+```sql
+INSERT INTO users
+VALUES (4, 'Oleg', 28, 'Moscow', 'inactive');
+```
+
 ---
 
 <!-- Выборка полей -->
