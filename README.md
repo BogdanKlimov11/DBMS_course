@@ -1466,6 +1466,56 @@ INSERT INTO tableName [(col1, col2, ...colN)]
 <!-- Выборка полей -->
 <h4 id="раздел-23">Выборка полей <a href="#top">↑top↑</a></h4>
 
+Для выборки полей из таблицы используется инструкция `SELECT`. Она возвращает данные в виде 
+результирующей таблицы (результирующего набора, result-set).
+
+```sql
+SELECT col1, col2, ...colN
+FROM tableName;
+```
+
+Для выборки всех полей используется такой синтаксис:
+
+```sql
+SELECT * FROM tableName;
+```
+
+Произведем выборку полей `userId`, `userName` и `age` из таблицы `users`:
+
+```sql
+SELECT userId, userName, age FROM users;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Oleg</td>
+        <td>28</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Предложение WHERE -->
