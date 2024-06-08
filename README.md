@@ -1521,6 +1521,73 @@ SELECT userId, userName, age FROM users;
 <!-- Предложение WHERE -->
 <h4 id="раздел-24">Предложение WHERE <a href="#top">↑top↑</a></h4>
 
+Предложение `WHERE` используется для фильтрации возвращаемых данных. Оно 
+используется совместно с `SELECT`, `UPDATE`, `DELETE` и другими инструкциями.
+
+```sql
+SELECT col1, col2, ...col2
+FROM tableName
+WHERE condition;
+```
+
+Условие (condition), которому должны удовлетворять возвращаемые записи, 
+определяется с помощью операторов сравнения или логических операторов типа 
+`>`, `<`, `=`, `NOT`, `LIKE` и т.д.
+
+Сделаем выборку полей `userId`, `userName` и `age` активных пользователей:
+
+```sql
+SELECT userId, userName, age
+FROM users
+WHERE status = 'active';
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+    </tr>
+</table>
+
+Сделаем выборку полей `userId`, `age` и `city` пользователя с именем `Vika`.
+
+```sql
+SELECT userId, age, city
+FROM users
+WHERE userName = 'Vika';
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>age</th>
+        <th>city</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>26</td>
+        <td>Ekaterinburg</td>
+    </tr>
+</table>
+
+*Обратите внимание*: строки в предложении `WHERE` должны быть обернуты в 
+одинарные кавычки (`''`), а числа, напротив, указываются как есть.
+
 ---
 
 <!-- Операторы AND и OR -->
