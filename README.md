@@ -1593,6 +1593,82 @@ WHERE userName = 'Vika';
 <!-- Операторы AND и OR -->
 <h4 id="раздел-25">Операторы AND и OR <a href="#top">↑top↑</a></h4>
 
+Конъюнктивный оператор `AND` и дизъюнктивный оператор `OR` используются 
+для соединения нескольких условий при фильтрации данных.
+
+`AND`
+
+```sql
+SELECT col1, col2, ...colN
+FROM tableName
+WHERE condition1 AND condition2 ...AND conditionN;
+```
+
+Возвращаемые записи должны удовлетворять всем указанным условиям.
+
+Сделаем выборку полей `userId`, `userName` и `age` активных пользователей 
+старше 26 лет:
+
+```sql
+SELECT userId, userName, age
+FROM users
+WHERE status = active AND age > 26;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+    </tr>
+</table>
+
+`OR`
+
+```sql
+SELECT col1, col2, ...colN
+FROM tableName
+WHERE condition1 OR condition2 ...OR conditionN;
+```
+
+Возвращаемые записи должны удовлетворять хотя бы одному условию.
+
+Сделаем выборку тех же полей неактивных пользователей или пользователей, 
+младше 27 лет:
+
+```sql
+SELECT userId, userName, age
+FROM users
+WHERE status = inactive OR age < 27;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Обновление полей -->
