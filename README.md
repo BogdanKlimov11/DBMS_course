@@ -1922,6 +1922,76 @@ WHERE userName REGEXP 'Igor|Vika';
 <!-- Предложение TOP/LIMIT/ROWNUM -->
 <h4 id="раздел-29">Предложение TOP/LIMIT/ROWNUM <a href="#top">↑top↑</a></h4>
 
+Данные предложения позволяют извлекать указанное количество или процент записей 
+с начала таблицы. Разные СУБД поддерживают разные предложения.
+
+```sql
+SELECT TOP number|percent col1, col2, ...colN
+FROM tableName
+[WHERE condition];
+```
+
+Сделаем выборку первых трех пользователей:
+
+```sql
+SELECT TOP 3 * FROM users;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>city</th>
+        <th>status</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>30</td>
+        <td>Moscow</td>
+        <td>active</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>Ekaterinburg</td>
+        <td>inactive</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+        <td>Ekaterinburg</td>
+        <td>active</td>
+    </tr>
+</table>
+
+В `mysql`:
+
+```sql
+SELECT * FROM users
+LIMIT 3, [offset];
+```
+
+Параметр `offset` (смещение) определяет количество пропускаемых записей. 
+Например, так можно извлечь первых двух пользователей, начиная с третьего:
+
+```sql
+SELECT * FROM users
+LIMIT 2, 2;
+```
+
+В `oracle`:
+
+```sql
+SELECT * FROM users
+WHERE ROWNUM <= 3;
+```
+
 ---
 
 <!-- Предложения ORDER BY и GROUP BY -->
