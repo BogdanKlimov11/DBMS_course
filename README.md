@@ -1997,6 +1997,125 @@ WHERE ROWNUM <= 3;
 <!-- Предложения ORDER BY и GROUP BY -->
 <h4 id="раздел-30">Предложения ORDER BY и GROUP BY <a href="#top">↑top↑</a></h4>
 
+`ORDER BY`
+
+Предложение `ORDER BY` используется для сортировки данных по возрастанию 
+(`ASC`) или убыванию (`DESC`). Многие СУБД по умолчанию выполняют сортировку 
+по возрастанию.
+
+```sql
+SELECT col1, col2, ...colN
+FROM tableName
+[WHERE condition]
+[ORDER BY col1, col2, ...colN] [ASC | DESC];
+```
+
+*Обратите внимание*: колонки для сортировки должны быть указаны в списке колонок 
+для выборки.
+
+Сделаем выборку пользователей, отсортировав их по городу и возрасту:
+
+```sql
+SELECT * FROM users
+ORDER BY city, age;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>city</th>
+        <th>status</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>Ekaterinburg</td>
+        <td>inactive</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+        <td>Ekaterinburg</td>
+        <td>active</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>30</td>
+        <td>Moscow</td>
+        <td>active</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Oleg</td>
+        <td>28</td>
+        <td>Moscow</td>
+        <td>inactive</td>
+    </tr>
+</table>
+
+Теперь выполним сортировку по убыванию:
+
+```sql
+SELECT * FROM users
+ORDER BY city, age DESC;
+```
+
+Определим собственный порядок сортировки по убыванию:
+
+```sql
+SELECT * FROM users
+ORDER BY (CASE city
+  WHEN 'Ekaterinburg' THEN 1
+  WHEN 'Moscow' THEN 2
+ELSE 100 END) ASC, city DESC;
+```
+
+`GROUP BY`
+
+Предложение `GROUP BY` используется совместно с инструкцией `SELECT` для 
+группировки записей. Оно указывается после `WHERE` и перед `ORDER BY`.
+
+```sql
+SELECT col1, col2, ...colN
+FROM tableName
+WHERE condition
+GROUP BY col1, col2, ...colN
+ORDER BY col1, col2, ...colN;
+```
+
+Сгруппируем активных пользователей по городам:
+
+```sql
+SELECT city, COUNT(city) AS amount FROM users
+WHERE status = active
+GROUP BY city
+ORDER BY city;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>city</th>
+        <th>amount</th>
+    </tr>
+    <tr>
+        <td>Ekaterinburg</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>Moscow</td>
+        <td>2</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Ключевое слово DISTINCT -->
