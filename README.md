@@ -1721,6 +1721,202 @@ WHERE status = 'inactive';
 <!-- Предложения LIKE и REGEX -->
 <h4 id="раздел-28">Предложения LIKE и REGEX <a href="#top">↑top↑</a></h4>
 
+`LIKE`
+
+Предложение `LIKE` используется для сравнения значений с помощью операторов с 
+подстановочными знаками. Существует два вида таких операторов:
+
+* проценты (`%`)
+
+* нижнее подчеркивание (`_`)
+
+`%` означает 0, 1 или более символов. `_` означает точно 1 символ.
+
+```sql
+SELECT col1, col2, ...colN FROM tableName
+WHERE col LIKE 'xxx%'
+-- или
+WHERE col LIKE '%xxx%'
+-- или
+WHERE col LIKE '%xxx'
+-- или
+WHERE col LIKE 'xxx_'
+-- и т.д.
+```
+
+Примеры:
+
+<table>
+    <tr>
+        <th>№</th>
+        <th>Инструкция</th>
+        <th>Результат</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>WHERE col LIKE 'foo%'</td>
+        <td>Любые значения, начинающиеся с <code>foo</code></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>WHERE col LIKE '%foo%'</td>
+        <td>Любые значения, содержащие <code>foo</code></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>WHERE col LIKE '_oo%'</td>
+        <td>
+            Любые значения, содержащие <code>oo</code> на второй и третьей 
+            позициях
+        </td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>WHERE col LIKE 'f%%'</td>
+        <td>
+            Любые значения, начинающиеся с <code>f</code> и состоящие как минимум 
+            из 1 символа
+        </td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>WHERE col LIKE '%oo'</td>
+        <td>Любые значения, оканчивающиеся на <code>oo</code></td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>WHERE col LIKE '_o%o'</td>
+        <td>
+            Любые значения, содержащие <code>o</code> на второй позиции и 
+            оканчивающиеся на <code>o</code>
+        </td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>WHERE col LIKE 'f_o'</td>
+        <td>
+            Любые значения, содержащие <code>f</code> и <code>o</code> на 
+            первой и третьей позициях, соответственно, и состоящие из трех символов
+        </td>
+    </tr>
+</table>
+
+Сделаем выборку неактивных пользователей:
+
+```sql
+SELECT * FROM users
+WHERE status LIKE 'in%';
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>city</th>
+        <th>status</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>Ekaterinburg</td>
+        <td>inactive</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Oleg</td>
+        <td>28</td>
+        <td>Moscow</td>
+        <td>inactive</td>
+    </tr>
+</table>
+
+Сделаем выборку пользователей 30 лет и старше:
+
+```sql
+SELECT * FROM users
+WHERE age LIKE '3_';
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>city</th>
+        <th>status</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>30</td>
+        <td>Moscow</td>
+        <td>active</td>
+    </tr>
+</table>
+
+`REGEX`
+
+Предложение `REGEX` позволяет определять регулярное выражение, которому должна 
+соответствовать запись.
+
+```sql
+SELECT col1, col2, ...colN FROM tableName
+WHERE colName REGEXP регулярное выражение;
+```
+
+В регулярное выражении могут использоваться следующие специальные символы:
+
+* `^` — начало строки
+
+* `$` — конец строки
+
+* `.` — любой символ
+
+* `[символы]` — любой из указанных в скобках символов
+
+* `[начало-конец]` — любой символ из диапазона
+
+* `|` — разделяет шаблоны
+
+Сделаем выборку пользователей с именами `Igor` и `Vika`:
+
+```sql
+SELECT * FROM users
+WHERE userName REGEXP 'Igor|Vika';
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>city</th>
+        <th>status</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>30</td>
+        <td>Moscow</td>
+        <td>active</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>Ekaterinburg</td>
+        <td>inactive</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Предложение TOP/LIMIT/ROWNUM -->
