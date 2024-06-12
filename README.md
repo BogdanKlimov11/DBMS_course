@@ -2121,6 +2121,36 @@ ORDER BY city;
 <!-- Ключевое слово DISTINCT -->
 <h4 id="раздел-31">Ключевое слово DISTINCT <a href="#top">↑top↑</a></h4>
 
+Ключевое слово `DISTINCT` используется совместно с инструкцией `SELECT` 
+для возврата только уникальных записей (без дубликатов).
+
+```sql
+SELECT DISTINCT col1, col2, ...colN
+FROM tableName
+[WHERE condition];
+```
+
+Сделаем выборку городов проживания пользователей:
+
+```sql
+SELECT DISTINCT city
+FROM users;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>city</th>
+    </tr>
+    <tr>
+        <td>Ekaterinburg</td>
+    </tr>
+    <tr>
+        <td>Moscow</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Соединения -->
