@@ -2294,15 +2294,15 @@ FROM table2
 Объединим наши таблицы `users` и `orders`:
 
 ```sql
-SELECT userId, userName, amount, date
-FROM users
-LEFT JOIN orders
-ON users.useId = orders.userId
+  SELECT userId, userName, amount, date
+  FROM users
+  LEFT JOIN orders
+  ON users.useId = orders.userId
 UNION
-SELECT userId, userName, amount, date
-FROM users
-RIGHT JOIN orders
-ON users.userId = orders.userId;
+  SELECT userId, userName, amount, date
+  FROM users
+  RIGHT JOIN orders
+  ON users.userId = orders.userId;
 ```
 
 Результат:
