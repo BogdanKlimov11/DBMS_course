@@ -2265,6 +2265,94 @@ WHERE users.userId = orders.userId;
 <!-- Предложение UNION -->
 <h4 id="раздел-33">Предложение UNION <a href="#top">↑top↑</a></h4>
 
+Предложение/оператор `UNION` используется для комбинации результатов двух и более 
+инструкций `SELECT`. При этом, возвращаются только уникальные записи.
+
+В случае с `UNION`, каждая инструкция `SELECT` должна иметь:
+
+* одинаковый набор колонок для выборки
+
+* одинаковое количество выражений
+
+* одинаковые типы данных колонок и
+
+* одинаковый порядок колонок
+
+Однако, они могут быть разной длины.
+
+```sql
+SELECT col1, col2, ...colN
+FROM table1
+[WHERE condition]
+
+UNION
+
+SELECT col1, col2, ...colN
+FROM table2
+[WHERE condition];
+```
+
+Объединим наши таблицы `users` и `orders`:
+
+```sql
+SELECT userId, userName, amount, date
+FROM users
+LEFT JOIN orders
+ON users.useId = orders.userId
+UNION
+SELECT userId, userName, amount, date
+FROM users
+RIGHT JOIN orders
+ON users.userId = orders.userId;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>amount</th>
+        <th>date</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>NULL</td>
+        <td>NULL</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>3000</td>
+        <td>2021-06-21 00:00:00</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>1500</td>
+        <td>2021-06-20 00:00:00</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>2000</td>
+        <td>2021-06-19 00:00:00</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>1000</td>
+        <td>2021-06-18 00:00:00</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Alex</td>
+        <td>NULL</td>
+        <td>NULL</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Предложение UNION ALL -->
