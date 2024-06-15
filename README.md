@@ -2625,6 +2625,27 @@ ALTER TABLE users DROP sex;
 <!-- Очистка таблицы -->
 <h4 id="раздел-38">Очистка таблицы <a href="#top">↑top↑</a></h4>
 
+Команда `TRUNCATE TABLE` используется для очистки таблицы. Ее отличие от `DROP 
+TABLE` состоит в том, что сохраняется структура таблицы (`DROP TABLE` полностью 
+удаляет таблицу и все ее данные).
+
+```sql
+TRUNCATE TABLE tableName;
+```
+
+Очищаем таблицу `users`:
+
+```sql
+TRUNCATE TABLE users;
+```
+
+Проверяем, что `users` пустая:
+
+```sql
+SELECT * FROM users;
+-- Empty set (0.00 sec)
+```
+
 ---
 
 <!-- Представления -->
