@@ -2560,6 +2560,66 @@ DROP INDEX indexName;
 <!-- Обновление таблицы -->
 <h4 id="раздел-37">Обновление таблицы <a href="#top">↑top↑</a></h4>
 
+Команда `ALTER TABLE` используется для добавления, удаления и модификации колонок 
+существующей таблицы. Также эта команда используется для добавления и удаления 
+ограничений.
+
+Синтаксис:
+
+```sql
+-- добавление новой колонки
+ALTER TABLE tableName ADD colName datatype;
+
+-- удаление колонки
+ALTER TABLE tableName DROP COLUMN colName;
+
+-- изменение типа данных колонки
+ALTER TABLE tableName MODIFY COLUMN colName newDatatype;
+
+-- добавление ограничения `NOT NULL`
+ALTER TABLE tableName MODIFY colName datatype NOT NULL;
+
+-- добавление ограничения `UNIQUE`
+ALTER TABLE tableName
+ADD CONSTRAINT myUniqueConstraint UNIQUE (col1, col2, ...colN);
+
+-- добавление ограничения `CHECK`
+ALTER TABLE tableName
+ADD CONSTRAINT myUniqueConstraint CHECK (condition);
+
+-- добавление первичного ключа
+ALTER TABLE tableName
+ADD CONSTRAINT myPrimaryKey PRIMARY KEY (col1, col2, ...colN);
+
+-- удаление ограничения
+ALTER TABLE tableName
+DROP CONSTRAINT myUniqueContsraint;
+
+-- mysql
+ALTER TABLE tableName
+DROP INDEX myUniqueContsraint;
+
+-- удаление первичного ключа
+ALTER TABLE tableName
+DROP CONSTRAINT myPrimaryKey;
+
+-- mysql
+ALTER TABLE tableName
+DROP PRIMARY KEY;
+```
+
+Добавляем в таблицу `users` новую колонку — пол пользователя:
+
+```sql
+ALTER TABLE users ADD sex char(1);
+```
+
+Удаляем эту колонку:
+
+```sql
+ALTER TABLE users DROP sex;
+```
+
 ---
 
 <!-- Очистка таблицы -->
