@@ -2387,6 +2387,97 @@ FROM table2
 <!-- Синонимы -->
 <h4 id="раздел-35">Синонимы <a href="#top">↑top↑</a></h4>
 
+Синонимы (aliases) позволяют временно изменять названия таблиц и колонок. 
+"Временно" означает, что новое название используется только в текущем запросе, 
+в БД название остается прежним.
+
+Синтаксис синонима таблицы:
+
+```sql
+SELECT col1, col2, ...colN
+FROM tableName AS aliasName
+[WHERE condition];
+```
+
+Синтаксис синонима колонки:
+
+```sql
+SELECT colName AS aliasName
+FROM tableName
+[WHERE condition];
+```
+
+Пример использования синонимов таблиц:
+
+```sql
+SELECT U.userId, U.userName, U.age, O.amount
+FROM users AS U, orders AS O
+WHERE U.userId = O.userId;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>userId</th>
+        <th>userName</th>
+        <th>age</th>
+        <th>amount</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>3000</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Vika</td>
+        <td>26</td>
+        <td>1500</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+        <td>2000</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+        <td>1000</td>
+    </tr>
+</table>
+
+Пример использования синонимов колонок:
+
+```sql
+SELECT userId AS user_id, userName AS user_name, age AS user_age
+FROM users
+WHERE status = active;
+```
+
+Результат:
+
+<table>
+    <tr>
+        <th>user_id</th>
+        <th>user_name</th>
+        <th>user_age</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Igor</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Elena</td>
+        <td>27</td>
+    </tr>
+</table>
+
 ---
 
 <!-- Индексы -->
